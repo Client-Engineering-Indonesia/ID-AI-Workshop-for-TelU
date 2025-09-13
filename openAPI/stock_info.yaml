@@ -1,0 +1,140 @@
+openapi: 3.0.3
+info:
+  title: Financial Analyst Agent API
+  description: Agentic AI tools for financial research & analysis
+  version: 1.0.0
+servers:
+  - url: https://stock-info.206cujtioc1w.us-south.codeengine.appdomain.cloud
+paths:
+  /stock/info:
+    get:
+      summary: Get stock information
+      description: Retrieve company fundamentals, valuation metrics, and current stock price.
+      parameters:
+        - in: query
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Stock ticker symbol (e.g., AAPL, MSFT)
+      responses:
+        "200":
+          description: Stock information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  company: {type: string}
+                  ticker: {type: string}
+                  sector: {type: string}
+                  industry: {type: string}
+                  market_cap: {type: number}
+                  pe_ratio: {type: number}
+                  forward_pe: {type: number}
+                  profit_margin: {type: number}
+                  beta: {type: number}
+                  currency: {type: string}
+                  current_price: {type: number}
+                  description: {type: string}
+
+  /stock/price:
+    get:
+      summary: Get stock price data
+      description: Retrieve historical stock price performance and trends.
+      parameters:
+        - in: query
+          name: ticker
+          required: true
+          schema: {type: string}
+          description: Stock ticker symbol
+        - in: query
+          name: period
+          schema: {type: string, default: "6mo"}
+          description: Data period (1d,5d,1mo,6mo,1y,5y,10y,max)
+        - in: query
+          name: interval
+          schema: {type: string, default: "1d"}
+          description: Data interval (1m,5m,1h,1d,1wk,1mo)
+      responses:
+        "200":
+          description: Stock price data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+
+  /stock/financials:
+    get:
+      summary: Get financial statements
+      description: Retrieve quarterly or annual financial statements.
+      parameters:
+        - in: query
+          name: ticker
+          required: true
+          schema: {type: string}
+        - in: query
+          name: statement_type
+          schema: {type: string, enum: [income, balance, cashflow], default: income}
+        - in: query
+          name: annual
+          schema: {type: boolean, default: true}
+          description: True = annual, False = quarterly
+      responses:
+        "200":
+          description: Financial statement retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  /wiki/search:
+    get:
+      summary: Search Wikipedia
+      description: Retrieve definitions or company background from Wikipedia.
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema: {type: string}
+        - in: query
+          name: sentences
+          schema: {type: integer, default: 3}
+      responses:
+        "200":
+          description: Wikipedia search result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query: {type: string}
+                  summary: {type: string}
+                  url: {type: string}
+
+  /web/search:
+    get:
+      summary: Search the web
+      description: Retrieve financial news and analyst reports using DuckDuckGo.
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema: {type: string}
+        - in: query
+          name: max_results
+          schema: {type: integer, default: 5}
+      responses:
+        "200":
+          description: Web search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
