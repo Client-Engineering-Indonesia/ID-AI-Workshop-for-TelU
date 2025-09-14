@@ -1,0 +1,163 @@
+openapi: 3.0.3
+info:
+  title: Telkom University Student Information System API
+  version: 1.0.0
+
+servers:
+  - url: https://sis-app-hf.206cujtioc1w.us-south.codeengine.appdomain.cloud
+    description: Deployed server on IBM Code Engine
+
+paths:
+  /student/info:
+    get:
+      summary: Get student information
+      parameters:
+        - in: query
+          name: NIM
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: enrollment_year
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: PIN
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response with student information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Full Name:
+                    type: string
+                  NIM:
+                    type: string
+                  Enrollment Year:
+                    type: integer
+                  Year:
+                    type: integer
+                  Term:
+                    type: integer
+                  Field of Study:
+                    type: string
+                  Academic Advisor:
+                    type: string
+        "400":
+          description: Invalid credentials
+
+  /student/report:
+    get:
+      summary: Get student academic report
+      parameters:
+        - in: query
+          name: NIM
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: enrollment_year
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: PIN
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response with student academic report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Student:
+                    type: string
+                  NIM:
+                    type: string
+                  Semester:
+                    type: integer
+                  Cumulative GPA:
+                    type: number
+                  Semester GPA:
+                    type: number
+                  Courses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Course ID:
+                          type: string
+                        Course Name:
+                          type: string
+                        Lecturer:
+                          type: string
+                        Credits:
+                          type: integer
+                        Score:
+                          type: string
+        "400":
+          description: Invalid credentials
+
+  /student/schedule:
+    get:
+      summary: Get student weekly schedule
+      parameters:
+        - in: query
+          name: NIM
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: enrollment_year
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: PIN
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response with student weekly schedule
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Student:
+                    type: string
+                  NIM:
+                    type: string
+                  Semester:
+                    type: integer
+                  Schedule:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Course ID:
+                            type: string
+                          Course Name:
+                            type: string
+                          Day:
+                            type: string
+                          Time:
+                            type: string
+                          Room:
+                            type: string
+                          Lecturer:
+                            type: string
+        "400":
+          description: Invalid credentials
