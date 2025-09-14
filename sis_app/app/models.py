@@ -68,6 +68,20 @@ scores_data = [
          {"Course ID": "INF101", "Score": "B"},
          {"Course ID": "INF102", "Score": "B+"},
      ]},
+    {"NIM": "110122043", "Semester": 6, "Cumulative GPA": 3.20, "Semester GPA": 3.40,
+     "Courses": [
+         {"Course ID": "ELC301", "Score": "B+"},
+         {"Course ID": "ELC302", "Score": "A-"},
+         {"Course ID": "INF101", "Score": "B"},
+         {"Course ID": "IS501", "Score": "A"},
+     ]},
+    {"NIM": "110121078", "Semester": 8, "Cumulative GPA": 3.55, "Semester GPA": 3.70,
+     "Courses": [
+         {"Course ID": "IND401", "Score": "A"},
+         {"Course ID": "IND402", "Score": "A-"},
+         {"Course ID": "IS502", "Score": "B+"},
+         {"Course ID": "ELC301", "Score": "B"},
+     ]},
 ]
 df_scores = pd.DataFrame(scores_data)
 
@@ -88,3 +102,51 @@ schedule_data = [
 ]
 
 df_schedule = pd.DataFrame(schedule_data)
+
+# ========================
+# Enrollment Data
+# ========================
+
+enrollments_data = [
+    # Rizky Pratama (already took INF101, INF102, IS501, IS502)
+    {"NIM": "110123001", "Courses": [
+        {"Course ID": "DSN201"},
+        {"Course ID": "DSN202"},
+        {"Course ID": "ELC301"},
+        {"Course ID": "IND401"},
+    ]},
+    
+    # Ayu Lestari Putri (already took DSN201, DSN202, INF101, INF102)
+    {"NIM": "110124015", "Courses": [
+        {"Course ID": "ELC301"},
+        {"Course ID": "ELC302"},
+        {"Course ID": "IS501"},
+        {"Course ID": "IND402"},
+    ]},
+    
+    # Muhammad Fajar Ramadhan (already took ELC301, ELC302, INF101, IS501)
+    {"NIM": "110122043", "Courses": [
+        {"Course ID": "INF102"},
+        {"Course ID": "DSN201"},
+        {"Course ID": "IND401"},
+        {"Course ID": "IS502"},
+    ]},
+    
+    # Dwi Ananda Kusuma (already took IND401, IND402, IS502, ELC301)
+    {"NIM": "110121078", "Courses": [
+        {"Course ID": "INF101"},
+        {"Course ID": "INF102"},
+        {"Course ID": "ELC302"},
+        {"Course ID": "DSN202"},
+    ]},
+    
+    # Siti Nurhaliza (no scores data yet, so assign new)
+    {"NIM": "110123056", "Courses": [
+        {"Course ID": "INF101"},
+        {"Course ID": "ELC302"},
+        {"Course ID": "IND402"},
+        {"Course ID": "DSN201"},
+    ]},
+]
+
+df_enrollments = pd.DataFrame(enrollments_data)

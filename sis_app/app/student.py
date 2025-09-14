@@ -1,6 +1,6 @@
-from student_information_system.app.models import df_students
+from sis_app.app.models import df_students
 
-def get_student_info(NIM, enrollment_year, PIN):
+def get_student_info(NIM, enrollment_year, PIN:str):
     student = df_students[(df_students["NIM"] == NIM) &
                           (df_students["Enrollment Year"] == enrollment_year)]
     if student.empty:
@@ -14,7 +14,7 @@ def get_student_info(NIM, enrollment_year, PIN):
         "Full Name": student["Full Name"],
         "NIM": student["NIM"],
         "Enrollment Year": student["Enrollment Year"],
-        "Current Year": student["Current Year"],
+        "Current Year": student["Year"],
         "Semester": student["Term"],
         "Field of Study": student["Field of Study"],
         "Academic Advisor": student["Academic Advisor"]
