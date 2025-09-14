@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from sis_app.app.student import get_student_info
-from sis_app.app.report import get_student_report
-from sis_app.app.schedule import get_my_schedule
+from app.student import get_student_info
+from app.report import get_student_report
+from app.schedule import get_my_schedule
 
 app = FastAPI(title="Telkom University SIS API", version="1.0.0")
 

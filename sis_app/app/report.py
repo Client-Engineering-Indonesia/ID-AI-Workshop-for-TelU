@@ -1,4 +1,4 @@
-from sis_app.app.models import df_students, df_scores, df_courses
+from app.models import df_students, df_scores, df_courses
 
 # ========================
 # get_student_report function
@@ -29,16 +29,16 @@ def get_student_report(NIM, enrollment_year, PIN: str):
             "Course ID": course_info["Course ID"],
             "Course Name": course_info["Course Name"],
             "Lecturer": course_info["Lecturer"],
-            "Credits": course_info["Credits"],
+            "Credits": int(course_info["Credits"]),
             "Score": c["Score"]
         })
     
     return {
         "Student Name": student["Full Name"],
         "NIM": student["NIM"],
-        "Semester": record["Semester"],
-        "Cumulative GPA": record["Cumulative GPA"],
-        "Semester GPA": record["Semester GPA"],
+        "Semester": int(record["Semester"]),
+        "Cumulative GPA": float(record["Cumulative GPA"]),
+        "Semester GPA": float(record["Semester GPA"]),
         "Courses": course_list
     }
 

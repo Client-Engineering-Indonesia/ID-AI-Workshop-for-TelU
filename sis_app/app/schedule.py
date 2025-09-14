@@ -1,4 +1,4 @@
-from sis_app.app.models import df_students, df_schedule, df_enrollments, df_courses
+from app.models import df_students, df_schedule, df_enrollments, df_courses
 
 def get_my_schedule(NIM: str, enrollment_year: int, PIN: str):
     # Validate student
@@ -32,7 +32,7 @@ def get_my_schedule(NIM: str, enrollment_year: int, PIN: str):
     return {
         "Student": student_name,
         "NIM": NIM,
-        "Semester": student.iloc[0]["Term"],
+        "Semester": int(student.iloc[0]["Term"]),
         "Schedule": grouped_schedule
     }
 
