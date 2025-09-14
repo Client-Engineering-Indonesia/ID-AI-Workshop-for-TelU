@@ -11,19 +11,23 @@ paths:
   /student/info:
     get:
       summary: Get student information
+      description: Retrieve detailed information about a student.
       parameters:
         - in: query
           name: NIM
+          description: The unique student identification number.
           required: true
           schema:
             type: string
         - in: query
           name: enrollment_year
+          description: The year the student enrolled in the university.
           required: true
           schema:
             type: integer
         - in: query
           name: PIN
+          description: A 4-digit security PIN for authentication.
           required: true
           schema:
             type: string
@@ -55,19 +59,23 @@ paths:
   /student/report:
     get:
       summary: Get student academic report
+      description: Retrieve the academic report of a student including GPA and course scores.
       parameters:
         - in: query
           name: NIM
+          description: The unique student identification number.
           required: true
           schema:
             type: string
         - in: query
           name: enrollment_year
+          description: The year the student enrolled in the university.
           required: true
           schema:
             type: integer
         - in: query
           name: PIN
+          description: A 4-digit security PIN for authentication.
           required: true
           schema:
             type: string
@@ -110,19 +118,23 @@ paths:
   /student/schedule:
     get:
       summary: Get student weekly schedule
+      description: Retrieve the weekly class schedule of a student grouped by day.
       parameters:
         - in: query
           name: NIM
+          description: The unique student identification number.
           required: true
           schema:
             type: string
         - in: query
           name: enrollment_year
+          description: The year the student enrolled in the university.
           required: true
           schema:
             type: integer
         - in: query
           name: PIN
+          description: A 4-digit security PIN for authentication.
           required: true
           schema:
             type: string
