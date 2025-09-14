@@ -4,7 +4,6 @@ from app.stock_price import get_stock_price_data
 from app.financial_statements import get_financial_statements
 from app.wikipedia_search import search_wikipedia
 from app.web_search import search_web
-import yfinance as yf
 
 app = FastAPI(
     title="Financial Analyst Agent API",
